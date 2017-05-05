@@ -1,0 +1,123 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.main-container {
+  padding-top: 25px;
+}
+
+nav.navbar {
+  box-shadow: 0px 4px 10px 0 rgba(22,22,22,0.08);
+  margin-bottom: 0;
+}
+
+.nav > li > a {
+  color: black;
+}
+
+.nav > li.nav-logo {
+  width: 174px;
+  display: block;
+  position: absolute;
+  left: 50%;
+  margin-left: -87px;
+}
+
+.nav-logo-image {
+  height: 17px;
+  width: 100%;
+}
+
+.nav > .li-logout {
+  padding: 7px;
+}
+
+.btn-logout {
+  color: black;
+}
+
+.home-heading {
+  background-color: #E3ECFA;
+  height: 75vh;
+  padding: 0 30%;
+  position: relative;
+}
+
+.home-heading-wrapper {
+  padding: 0 5%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.home-heading-wrapper > h1 {
+  font-size: 9rem;
+}
+
+.home-heading-wrapper > p {
+  font-size: 2rem;
+}
+
+.campaign-image {
+  width: 100%;
+  height: 500px;
+}
+
+.campaign-total {
+  font-size: 1.9em;
+  color: #05AF3C;
+}
+
+.light-text {
+  color: #626369;
+}
+
+.large-strong {
+  font-size: 1.4em;
+}
+
+progress {
+  width: 100%;
+}
+
+.campaign-info div {
+  margin-bottom: 15px;
+}
+
+.campaign-container .row {
+  padding: 35px 0;
+}
+
+.backer-btn {
+  background-color: #25CB68;
+  border-radius: 3px;
+  border: 1px solid black;
+  color: white;
+  width: 300px;
+  height: 75px;
+  padding: 2.4rem 4.8rem;
+  font-size: 1.8rem;
+}
+
+.backer-btn:hover {
+  color: white;
+  background-color: #05AF3C;
+}
+
+.campaign-category {
+  font-size: 1.4rem;
+  border: 1px solid black;
+  padding: 10px 0;
+  text-align: center;
+  float: right;
+  width: 70px;
+}
+
+.campaign-description {
+  padding-right: 275px;
+}
