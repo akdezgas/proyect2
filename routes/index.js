@@ -1,17 +1,17 @@
 var express = require('express');
 var router = express.Router();
-const Campaign = require('../models/Campaign');
+const Item = require('../models/Item');
 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   console.log(req.user);
 
-    Campaign
+    Item
       .find({})
       .populate('_creator')
-      .exec( (err, campaigns) => {
-          res.render('index', { campaigns});
+      .exec( (err, items) => {
+          res.render('index', { items});
       });
 });
 

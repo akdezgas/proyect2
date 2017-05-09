@@ -9,10 +9,10 @@ const mongoose = require('mongoose');
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
-const campaignRoutes = require('./routes/campaign')
+const itemRoutes = require('./routes/item')
 
 // Connect with database
-mongoose.connect('mongodb://localhost/ironfunds-development');
+mongoose.connect('mongodb://localhost/proyecto2');
 
 // Express instance
 var app = express();
@@ -39,9 +39,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules/')))
 
+app.use('/items', itemRoutes);
 app.use('/', index);
 app.use('/', authRoutes);
-app.use('/campaigns', campaignRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

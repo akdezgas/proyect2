@@ -1,0 +1,39 @@
+<div class="container item-container">
+  <div class="row">
+    <div class="col-sm-2">
+      <img src="<%= item.imgUrl %>" width=100><br>
+      By: <strong><%= item._creator.username %></strong>
+    </div>
+    <div class="col-sm-10">
+      <h1><%= item.title %></h1>
+      <h2 class="item-category"><%= item.category %></h2>
+      <p class="item-description"><%= item.description %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-8">
+      <img class="item-image" src="<%= item.image %>">
+    </div>
+    <div class="col-sm-4 item-info">
+      <div class="item-progress">
+        <progress value="<%= item.totalPledged %>" max="<%= item.goal %>"></progress>
+      </div>
+      <div class="item-pledged">
+        <span class="item-total">$<%= item.totalPledged %></span><br>
+        <span class="light-text">
+          pledged of
+          $<%= item.goal %></span> goal
+        </span>
+      </div>
+      <div class="item-backers">
+        <strong class="large-strong"><%= item.backerCount %></strong><br>
+        <span class="light-text">backers</span>
+      </div>
+      <div class="item-time">
+        <strong class="large-strong"><%= item.timeRemaining.days %></strong><br>
+        <span class="light-text"><%= item.timeRemaining.unit  %> to go.</span>
+      </div>
+      <a class="btn backer-btn" href="/items/<%= item._id%>/rewards">Back This Project</a>
+    </div>
+  </div>
+</div>

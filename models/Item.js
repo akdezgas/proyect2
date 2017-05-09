@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
-const TYPES    = require('./campaign-types');
+const TYPES    = require('./item-types');
 const moment = require('moment');
 
-const CampaignSchema = new Schema({
+const ItemSchema = new Schema({
   title         : { type: String, required: true },
   description   : { type: String, required: true },
   category      : { type: String, enum: TYPES, required: true },
@@ -12,17 +12,17 @@ const CampaignSchema = new Schema({
   backerCount   : { type: Number, default: 0 },
   totalPledged  : { type: Number, default: 0 },
   deadline      : { type: Date, required: true },
-  imgUrl     : { type: String, default: "http://img1.rnkr-static.com/user_node_img/75/1498358/C250/maggie-simpson-film-characters-photo-u1.jpg" }
+  imgUrl     : { type: String, default: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRwfjhKyiONTjnx2t5tbKVrIqEpN22zRRN6IluVir-1dysSBcqP" }
 });
-CampaignSchema.virtual('timeRemaining').get(function () {
+ItemSchema.virtual('timeRemaining').get(function () {
   let remaining = moment(this.deadline).fromNow(true).split(' ');
   let [days, unit] = remaining;
   return { days, unit };
 });
 
-CampaignSchema.virtual('inputFormattedDate').get(function(){
+ItemSchema.virtual('inputFormattedDate').get(function(){
   return moment(this.deadline).format('YYYY-MM-DD');
 });
 
 
-module.exports = mongoose.model('Campaign', CampaignSchema);
+module.exports = mongoose.model('Item', ItemSchema);
