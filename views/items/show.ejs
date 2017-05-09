@@ -33,7 +33,18 @@
         <strong class="large-strong"><%= item.timeRemaining.days %></strong><br>
         <span class="light-text"><%= item.timeRemaining.unit  %> to go.</span>
       </div>
-      <a class="btn backer-btn" href="/items/<%= item._id%>/rewards">Back This Project</a>
+      <a class="btn backer-btn" href="/items/<%= item._id%>/cupons">Back This Project</a>
+<!--
+      <% if (itemIsCurrentUsers) { %>
+    <a class="btn backer-btn" href="/items/<%= item._id%>/edit">Edit This Project</a>
+    <a class="btn btn-primary new-cupon" href="/items/<%= item._id%>/cupons/new">Create New cupon</a>
+  <% } else { %>
+  -->
     </div>
-  </div>
+
+
+
+    </div>
+
+
 </div>

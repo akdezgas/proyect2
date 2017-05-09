@@ -5,6 +5,7 @@ const UserSchema = new Schema({
   email      : {type:String, required:true},
   username   : {type:String, required:true},
   password   : {type:String, required:true},
+  cupons   :  {type: Number, default: 10},
   imgUrl     : { type: String, default: "https://www.ideas4all.com/accounts/brasaas/images/layout/100x100ximg-default-user2.gif,q1492680179.pagespeed.ic.pRxW64NyzY.png" }
 });
 
