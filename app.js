@@ -9,7 +9,8 @@ const mongoose = require('mongoose');
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
-const itemRoutes = require('./routes/item')
+const itemRoutes = require('./routes/item');
+const cuponRoutes = require ('./routes/cupon')
 
 // Connect with database
 mongoose.connect('mongodb://localhost/proyecto2');
@@ -42,6 +43,7 @@ app.use('/node_modules', express.static(path.join(__dirname, 'node_modules/')))
 app.use('/items', itemRoutes);
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/', cuponRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

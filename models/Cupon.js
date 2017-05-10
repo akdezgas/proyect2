@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
-const CuponsSchema = new Schema({
+const CuponSchema = new Schema({
+  quantity : {type:Number},
   bidders    : [ { type: Schema.Types.ObjectId,  ref: 'User' } ],
-  product     : {type : Schema.Types.ObjectId, ref: 'Item'},
+  product    : {type : Schema.Types.ObjectId, ref: 'Item'},
 });
 
 

@@ -4,8 +4,9 @@
       <form action="/items/<%= item._id %>/cupons" method="POST">
         <div class="form-group">
           <label for="title">¿Cuantos cupones quieres gastar?</label>
-          <input type="text" name="title" id="title" class="form-control">
+          <input type="number" name="quantity" id="quantity" class="form-control">
         </div>
+
         <div class="form-group">
           <label for="delivery">Expected Delivery Date</label>
           <input type="date" name="delivery" value="<%= item.inputFormattedDate %>" class="form-control">
@@ -17,3 +18,4 @@
     </div>
   </div>
 </div>
+<!-- comprobar que el user no puede poner mas cupones de los que le faltan al item-->

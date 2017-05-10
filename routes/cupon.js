@@ -8,31 +8,51 @@ const router                  = express.Router();
 const ObjectId                = require('mongoose').Types.ObjectId;
 
 
-router.get('/items/:id/cupons/new', authorizeItem, (req, res, next) => {
+router.get('/items/:id/cupons/add', (req, res, next) => {
   Item.findById(req.params.id, (err, item) => {
-    res.render('cupons/new', { item })
+    res.render('cupons/add', { item })
   });
 });
 
-router.post('/items/:id/cupons', authorizeItem, (req, res, next) => {
+router.post('/items/:id/cupons',  (req, res, next) => {
   Item.findById(req.params.id, (err, item) => {
     if (err || !item) { return next(new Error("404")); }
-
+    console.log(req.body)
     const cupon = new Cupon({
-      title      : req.body.title,
-      description: req.body.description,
-      amount     : req.body.amount,
-      delivery   : req.body.delivery,
-      _item  : item._id
+      quantity      : req.body.quantity,
+      bidders : req.user._id,
+      product  : item._id
     });
 
+
+
     cupon.save( (err) => {
+      console.log(parseInt(req.body.quantity));
       if (err){
-        return res.render('cupons/new', { errors: cupon.errors });
+        console.log(err);
+        return res.render('cupons/add', { errors: cupon.errors });
       }
 
-      item.cupons.push(cupon._id);
+  User.find({_id:req.user._id}, (err, user)=> {
+    console.log(user);
+  });
+
+
+      User.findOneAndUpdate({_id: req.user._id}, { $inc : {cupons: parseInt(-req.body.quantity)}}, ()=>{
+        console.log('done');
+      })
+      Item.findOneAndUpdate({_id: item._id}, { $inc : {goal: parseInt(req.body.quantity)}}, ()=>{
+        console.log('done');
+      })
+
+//Operaciones para restar al user, y sumar item de cupon
+User.find({_id:req.user._id}, (err, user)=> {
+  console.log(user);
+});
+      //Comprobar si item tiene el max de cupon
+
       item.save( (err) => {
+        console.log('hola');
         if (err) {
           return next(err);
         } else {
