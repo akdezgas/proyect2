@@ -17,7 +17,6 @@ router.get('/items/:id/cupons/add', (req, res, next) => {
 router.post('/items/:id/cupons',  (req, res, next) => {
   Item.findById(req.params.id, (err, item) => {
     if (err || !item) { return next(new Error("404")); }
-    console.log(req.body)
     const cupon = new Cupon({
       quantity      : req.body.quantity,
       bidders : req.user._id,
@@ -27,22 +26,16 @@ router.post('/items/:id/cupons',  (req, res, next) => {
 
 
     cupon.save( (err) => {
-      console.log(parseInt(req.body.quantity));
       if (err){
         console.log(err);
         return res.render('cupons/add', { errors: cupon.errors });
       }
 
-  User.find({_id:req.user._id}, (err, user)=> {
-    console.log(user);
-  });
-
-
       User.findOneAndUpdate({_id: req.user._id}, { $inc : {cupons: parseInt(-req.body.quantity)}}, ()=>{
-        console.log('done');
+        console.log('done update user');
       })
       Item.findOneAndUpdate({_id: item._id}, { $inc : {goal: parseInt(req.body.quantity)}}, ()=>{
-        console.log('done');
+        console.log('done update item');
       })
 
 //Operaciones para restar al user, y sumar item de cupon
@@ -52,7 +45,6 @@ User.find({_id:req.user._id}, (err, user)=> {
       //Comprobar si item tiene el max de cupon
 
       item.save( (err) => {
-        console.log('hola');
         if (err) {
           return next(err);
         } else {

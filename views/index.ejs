@@ -5,7 +5,6 @@
 
       <p>Let's see some options</p>
       <a class="btn btn-default" href="/items/new">Upload a new item</a>
-      <a class="btn btn-default" href="/items/list">See the list of items</a>
       <a class="btn btn-default" href="#">Get some cupons</a>
 
     </div>
@@ -18,7 +17,7 @@
 
         <% items.forEach((item) => { %>
           <div class="col-sm-3 home-item-box">
-            <img src="<%= item.imgUrl %>">
+            <img src="<%= item.pic_path %>">
             <div class="item-info-wrapper">
               <a class="title" href="/items/<%= item._id %>">
                 <strong><%= item.title %></strong>
@@ -28,7 +27,6 @@
             </div>
           </div>
           <%  }) %>
-
 
 
   </div>

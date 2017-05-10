@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-6 centered-form">
 
-      <form action="/items/<%= item._id %>" method="post">
+      <form action="/items/<%= item._id %>" method="post" enctype="multipart/form-data">
         <% if (typeof(errors) !== 'undefined'){ %>
           <div class="alert alert-danger">
           <ul>
@@ -29,29 +29,16 @@
             <%= item.description %>
           </textarea>
         </div>
-        <div class="form-group">
-          <label for="category">Category</label><br>
-          <select name="category" id="category">
-            <% types.forEach((category) => { %>
-            <!-- This selects the item's category in the dropdown -->
-              <% if (category === item.category) { %>
-                <option
-                  selected
-                  type="text"
-                  value="<%= category %>"
-                  class="form-control">
-                <%= category %>
-                </option>
-              <% } else { %>
-                <option type="text" value="<%= category %>" class="form-control"><%= category %></option>
-              <% } %>
-            <%  }) %>
-          </select>
-        </div>
+
         <div class="form-group">
           <label for="deadline">Deadline</label>
           <input type="date" name="deadline" class="form-control" value="<%= item.inputFormattedDate %>">
         </div>
+        <div class="form-group">
+            <h2>Upload your photo</h2>
+              <input type="file" name="photo">
+        </div>
+
         <div class="form-group">
           <button type="submit">Update item</button>
         </div>
@@ -59,3 +46,26 @@
     </div>
   </div>
 </div>
+
+
+<!--
+<div class="form-group">
+  <label for="category">Category</label><br>
+  <select name="category" id="category">
+    <% types.forEach((category) => { %>
+
+      <% if (category === item.category) { %>
+        <option
+          selected
+          type="text"
+          value="<%= category %>"
+          class="form-control">
+        <%= category %>
+        </option>
+      <% } else { %>
+        <option type="text" value="<%= category %>" class="form-control"><%= category %></option>
+      <% } %>
+    <%  }) %>
+  </select>
+</div>
+-->

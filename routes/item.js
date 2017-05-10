@@ -5,25 +5,29 @@ const TYPES    = require('../models/item-types');
 const router   = express.Router();
 const { ensureLoggedIn }  = require('connect-ensure-login');
 const authorizeItem = require('../middleware/item-authorization');
+var multer  = require('multer');
+var upload = multer({ dest: './public/uploads/' });
+
 
 router.get('/new', ensureLoggedIn('/login'), (req, res) => {
   res.render('items/new', { types: TYPES});
 });
 
-router.post('/', ensureLoggedIn('/login'), (req, res, next) => {
-
-  const {title, goal,description, category, deadline} = req.body;
+router.post('/', ensureLoggedIn('/login'), upload.single('photo'),(req, res, next) => {
+  console.log(req.body);
   const newItem = new Item({
-    title,
-    goal,
-    description,
-    category,
-    deadline,
+    title : req.body.title,
+    goal : req.body.goal,
+    description:req.body.goal,
+    category:req.body.goal,
+    deadline:req.body.goal,
     // We're assuming a user is logged in here
     // If they aren't, this will throw an error
-    _creator: req.user._id
+    _creator: req.user._id,
+    pic_path: `/uploads/${req.file.filename}`,
+    pic_name: req.file.originalname
   });
-
+  console.log(req.file);
   newItem.save( (err) => {
     if (err) {
       console.log("Error creating item");
@@ -57,7 +61,7 @@ router.get('/:id/edit', [ensureLoggedIn('/login'), authorizeItem], (req, res, ne
   });
 });
 
-router.put('/:id', [ensureLoggedIn('/login'), authorizeItem], (req, res, next) => {
+router.put('/:id', [ensureLoggedIn('/login'),upload.single('photo'), authorizeItem], (req, res, next) => {
   const updates = {
     title: req.body.title,
     description: req.body.description,
