@@ -19,10 +19,8 @@ router.post('/', ensureLoggedIn('/login'), upload.single('photo'),(req, res, nex
     title : req.body.title,
     goal : req.body.goal,
     description:req.body.goal,
-    category:req.body.goal,
+    category:req.body.goal, // Presta atencion si quieres poner Category!!!
     deadline:req.body.goal,
-    // We're assuming a user is logged in here
-    // If they aren't, this will throw an error
     _creator: req.user._id,
     pic_path: `/uploads/${req.file.filename}`,
     pic_name: req.file.originalname
@@ -73,6 +71,16 @@ router.put('/:id', [ensureLoggedIn('/login'),upload.single('photo'), authorizeIt
     if (!item) { return next(new Error("404")); }
     return res.redirect(`/items/${item._id}`);
   });
+});
+
+router.post('/:id/delete', (req, res, next) => {
+  const id = req.params.id;
+
+  Item.findByIdAndRemove(id, (err, product) => {
+    if (err){ return next(err); }
+    return res.redirect('/');
+  });
+
 });
 
 

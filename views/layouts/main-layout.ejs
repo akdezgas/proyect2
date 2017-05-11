@@ -23,7 +23,7 @@
                   <% } else { %>
                       <span style="color:white">Current Logged user is <%= user.username %></span>
                       <!-- <img src="<%= user.imgUrl %>"/> -->
-                      <li><a href="/edit">Profile</a></li>
+                      <li><a href="/<%= user._id %>/edit">Profile</a></li>
                       <li> <a href="/logout"> Log Out </a> </li>
                   <% } %>
           </ul>
