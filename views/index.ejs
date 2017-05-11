@@ -5,7 +5,7 @@
 
     <% if (user) { %>
     <div class="home-heading-wrapper">
-
+      You have <%= user.cupons %> cupons
       <p>Let's see some options</p>
       <a class="btn btn-default" href="/items/new">Upload a new item</a>
 
@@ -17,13 +17,13 @@
       <div class="photo2"><a href="/"> <img src="/imagenes/maza2.png"></a></><br></>
       <div class="photo"><img src="imagenes/subasta.jpg"></div>
       <h5 ><b>En Puja&Gana puedes añadir cualquier producto que desees
-        para subastar y a la vez comprar cualquier producto de nuestra Web. Suerte.</b></h5><br><br>
-        <h5 class="text-center">mostramos algunos de los productos que han subido nuestros usuarios.</h5><br><br>
+        para subastar y a la vez comprar cualquier producto de nuestra Web.</b></h5><br><br>
+        <h5 class="text-center">Algunos de los productos que han subido nuestros usuarios.</h5><br><br>
 
 
 
         <% items.forEach((item) => { %>
-          <div class="col-sm-3 home-item-box">
+          <div  id="item-INF" class="col-sm-3 home-item-box">
             <div class="logos"><img src="<%= item.pic_path %>" height=60%>></div>
             <div class="item-info-wrapper">
               <a class="title" href="/items/<%= item._id %>">
