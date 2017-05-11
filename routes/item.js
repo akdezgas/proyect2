@@ -18,9 +18,9 @@ router.post('/', ensureLoggedIn('/login'), upload.single('photo'),(req, res, nex
   const newItem = new Item({
     title : req.body.title,
     goal : req.body.goal,
-    description:req.body.goal,
-    category:req.body.goal, // Presta atencion si quieres poner Category!!!
-    deadline:req.body.goal,
+    description:req.body.description,
+    category:req.body.category, // Presta atencion si quieres poner Category!!!
+    deadline:req.body.deadline,
     _creator: req.user._id,
     pic_path: `/uploads/${req.file.filename}`,
     pic_name: req.file.originalname
