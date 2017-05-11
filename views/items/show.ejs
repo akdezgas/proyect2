@@ -1,8 +1,11 @@
-<div class="container item-container">
-  <div class="row">
+<div class="fondo">
+  <div class="container item-container">
+  <div class="show">
+
+    <div class="row" style="text-align:center">
     <div class="col-sm-2">
-      <img src="<%= item.pic_path %>" width=100><br>
-      By: <strong><%= item._creator.username %></strong>
+      <img src="<%= item.pic_path %>" height=170%>
+      <strong></strong>
     </div>
     <div class="col-sm-10">
       <h1><%= item.title %></h1>
@@ -15,6 +18,7 @@
       <img class="item-image" src="<%= item.image %>">
     </div>
     <div class="col-sm-4 item-info">
+      By: <strong><%= item._creator.username %></strong>
       <div class="item-progress">
         <progress value="<%= item.totalPledged %>" max="<%= item.goal %>"></progress>
       </div>
@@ -33,14 +37,54 @@
         <strong class="large-strong"><%= item.timeRemaining.days %></strong><br>
         <span class="light-text"><%= item.timeRemaining.unit  %> to go.</span>
       </div>
-      <a style="color:black;" href="/items/<%= item._id%>/cupons/add">Añadir Cupon</a>
+      <a style="color:black;" href="/items/<%= item._id%>/add">Añadir Cupon</a>
       <a style="color:black;" href="/items/<%= item._id%>/edit">Editar Item </a>
-
+      <p id="demo"></p> <!--Este es el clock de cuenta atras -->
     </div>
 
 
 
     </div>
-
+</div>
 
 </div>
+</div>
+
+
+<script>
+var currentTime = <%- JSON.stringify(item); %>
+
+
+var countDownDate = new Date(currentTime.deadline).getTime();
+
+var x = setInterval(function() {
+
+    var now = new Date().getTime();
+
+    var distance = countDownDate - now;
+    if (distance === 0) {
+        var btn = document.createElement("a");
+        var t = document.createTextNode("See who is the winner");
+        btn.href = "/items/<%= item._id%>/winner";
+        btn.appendChild(t);
+        document.getElementById("info").appendChild(btn);
+    }
+
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Output the result in an element with id="demo"
+    document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+    + minutes + "m " + seconds + "s ";
+
+    // If the count down is over, write some text
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "EXPIRED";
+    }
+}, 1000);
+
+</script>

@@ -1,35 +1,43 @@
 <!-- views/index.ejs -->
-<div class="container-fluid">
+
+<div class="fondo">
+  <div class="container-fluid">
+
     <% if (user) { %>
     <div class="home-heading-wrapper">
 
       <p>Let's see some options</p>
       <a class="btn btn-default" href="/items/new">Upload a new item</a>
-      <a class="btn btn-default" href="#">Get some cupons</a>
 
     </div>
     <% } %>
 
 
-  <div class="item-row">
-    <h3 class="text-center">Una muestra de lo que puedes encontrar aqui!</h3>
+    <div class="item-row">
+      <div class="photo2"><a href="/"> <img src="/imagenes/maza2.png"></a></><br></>
+      <div class="photo"><img src="imagenes/subasta.jpg"></div>
+      <h5 ><b>En Puja&Gana puedes añadir cualquier producto que desees
+        para subastar y a la vez comprar cualquier producto de nuestra Web. Suerte.</b></h5><br><br>
+        <h5 class="text-center">mostramos algunos de los productos que han subido nuestros usuarios.</h5><br><br>
+
 
 
         <% items.forEach((item) => { %>
           <div class="col-sm-3 home-item-box">
-            <img src="<%= item.pic_path %>">
+            <div class="logos"><img src="<%= item.pic_path %>" height=60%>></div>
             <div class="item-info-wrapper">
               <a class="title" href="/items/<%= item._id %>">
                 <strong><%= item.title %></strong>
               </a><br>
               by <span class="light-text"><%= item._creator.username %></span><br>
-              <span class="light-text description"><%= item.goal %></span>
+              <span class="light-text description"><%= item.goal %> $</span>
             </div>
           </div>
           <%  }) %>
 
 
   </div>
+</div>
 </div>
   <!--
    <% if (user) { %>

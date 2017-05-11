@@ -7,52 +7,75 @@ const authorizeItem = require('../middleware/item-authorization');
 const router                  = express.Router();
 const ObjectId                = require('mongoose').Types.ObjectId;
 
-
-router.get('/items/:id/cupons/add', (req, res, next) => {
+router.get('/:id/add', (req, res, next) => {
   Item.findById(req.params.id, (err, item) => {
     res.render('cupons/add', { item })
   });
 });
 
-router.post('/items/:id/cupons',  (req, res, next) => {
-  Item.findById(req.params.id, (err, item) => {
-    if (err || !item) { return next(new Error("404")); }
-    const cupon = new Cupon({
-      quantity      : req.body.quantity,
-      bidders : req.user._id,
-      product  : item._id
-    });
+router.post('/:id/add',  (req, res, next) => {
+  return Item.findById(req.params.id, (err, item) => {
+    let requestedQuantity = parseInt(req.body.quantity);
+    let currentQuantity = req.user.cupons;
+    let currentItemQuantity= item.backerCount;
 
-
-
-    cupon.save( (err) => {
-      if (err){
-        console.log(err);
-        return res.render('cupons/add', { errors: cupon.errors });
-      }
-
-      User.findOneAndUpdate({_id: req.user._id}, { $inc : {cupons: parseInt(-req.body.quantity)}}, ()=>{
-        console.log('done update user');
-      })
-      Item.findOneAndUpdate({_id: item._id}, { $inc : {goal: parseInt(req.body.quantity)}}, ()=>{
-        console.log('done update item');
-      })
-
-//Operaciones para restar al user, y sumar item de cupon
-User.find({_id:req.user._id}, (err, user)=> {
-  console.log(user);
-});
-      //Comprobar si item tiene el max de cupon
-
-      item.save( (err) => {
-        if (err) {
-          return next(err);
-        } else {
-          return res.redirect(`/items/${item._id}`);
-        }
+    let remainderCuponsUser = currentQuantity - requestedQuantity;
+    let remainderCuponsItem = currentItemQuantity - requestedQuantity;
+    console.log(remainderCuponsItem);
+    if((remainderCuponsUser > 0) && (remainderCuponsItem > 0) ){
+      req.user.cupons = remainderCuponsUser;
+      item.backerCount = remainderCuponsItem;
+      req.user.save((err,user) => {
+        item.save((err,item) =>{
+          res.redirect('/items/'+item._id);
+        })
+        console.log("User remaind cupons: " + remainderCuponsUser);
       });
-    });
+    }else{
+      console.log("USER DOES NOT HAVE ENHOUGH CUPONS");
+      res.render('cupons/add', { item,errors: err });
+    }
   });
 });
 
+router.get('/:id/winner', (req, res, next) => {
+  Cupon.find({product: req.params.id}, (err, item) => {
+    let whoWinner = math.Random();
+    let x = Math.floor((Math.random() * 10) + 1);
+
+
+    //res.render('cupons/winner', { item })
+    //REalizar peticion y buscar todos los cupones que tienen esa id
+
+  });
+
+
+});
+
 module.exports = router;
+
+/*
+
+router.get('/buy', (req, res, next) => {
+
+      res.render('cupons/buy', { item })
+
+  });
+///items/buy
+router.post('/buy',  (req, res, next) => {
+    return User.findById(req.params.id, (err, item) => {
+      let requestedQuantity = parseInt(req.body.quantity);
+      let currentUserQuantity= user.cupons;
+
+      let remainderCuponsUser = currentUserQuantity + requestedQuantity;
+
+        user.cupons = remainderCuponsUser;
+
+        user.save((err,user) => {
+            res.redirect('/');
+        });
+
+    });
+  });
+
+*/

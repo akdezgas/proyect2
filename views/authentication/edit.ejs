@@ -1,39 +1,45 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm-6 centered-form">
-
-      <form action="/<%= user._id %>/edit" method="POST" >
-        <% if (typeof(errors) !== 'undefined'){ %>
-          <div class="alert alert-danger">
-          <ul>
-            <% for (let error in errors){ %>
-              <li><%= errors[error].message %></li>
-            <% } %>
-          </ul>
-          </div>
-        <% } %>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" name="username" class="form-control">
+  <section id="content">
+    <form action="/<%= user._id %>/edit" method="POST" >
+      <% if (typeof(errors) !== 'undefined'){ %>
+        <div class="alert alert-danger">
+        <ul>
+          <% for (let error in errors){ %>
+            <li><%= errors[error].message %></li>
+          <% } %>
+        </ul>
         </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="text" name="email" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name="password" class="form-control">
-        </div>
-
-        <div class="form-group">
-          <button type="submit">Save changes</button>
-        </div>
-      </form>
+      <% } %>
+      <h1>Edit</h1>
+      <div>
+        <label for="username"></label>
+        <input type="text" for="username" placeholder="Username" name="username" required="" />
+      </div>
+      <div>
+          <label for="password"></label>
+        <input type="password" for="password" placeholder="Password" name="password" required=""/>
+      </div>
+      <div>
+        <label for="email"></label>
+        <input type="text" for="email" placeholder="email" name="email" required=""  />
+      </div>
+      <div>
+        <label for="Do you want more coupons?"> Do you want more coupons?</label>
+        <input type="text" for="Do you want more coupons?" placeholder="How much?" name="coupons"  />
+      </div>
+      <div>
+        <input type="submit" value="Update " />
+      </div>
 
       <form action="/<%= user._id %>/edit/delete" method="POST">
           <button type="submit">Delete User</button>
-      </form>
+      </form><br><br>
+      </div><br>
 
-    </div>
-  </div>
-</div>
+
+
+    </form><!-- form -->
+
+  </section><!-- content -->
+
+</div><!-- container -->

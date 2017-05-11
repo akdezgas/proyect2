@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 centered-form">
+      <form action="/items/<%= item._id %>/buy" method="POST">
+        <div class="form-group">
+          <label for="title">¿Cuantos cupones quieres comprar?</label>
+          <input type="number" name="quantity" id="quantity" class="form-control">
+        </div>
+        <div class="form-group">
+          <button type="submit">Acualiza tu dinero</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

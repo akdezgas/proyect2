@@ -17,11 +17,13 @@ router.post('/', ensureLoggedIn('/login'), upload.single('photo'),(req, res, nex
   console.log(req.body);
   const newItem = new Item({
     title : req.body.title,
-    goal : req.body.goal,
     description:req.body.description,
+    _creator: req.user._id,
+    goal : req.body.goal,
+    backerCount: req.body.goal,
     category:req.body.category, // Presta atencion si quieres poner Category!!!
     deadline:req.body.deadline,
-    _creator: req.user._id,
+
     pic_path: `/uploads/${req.file.filename}`,
     pic_name: req.file.originalname
   });
@@ -82,6 +84,5 @@ router.post('/:id/delete', (req, res, next) => {
   });
 
 });
-
 
 module.exports = router;

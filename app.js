@@ -43,7 +43,7 @@ app.use('/node_modules', express.static(path.join(__dirname, 'node_modules/')))
 app.use('/items', itemRoutes);
 app.use('/', index);
 app.use('/', authRoutes);
-app.use('/', cuponRoutes);
+app.use('/items', cuponRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

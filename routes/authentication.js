@@ -3,6 +3,7 @@ const passport = require('passport');
 const router  = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 const User = require('../models/User');
+const Cupon = require ('../models/Cupon');
 
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
@@ -29,9 +30,6 @@ router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
 });
 
 router.get('/:id', (req, res, next) => {
-  User.findById(req.params.id, (err, user) => {
-    if (err){ return next(err); }
-  });
   res.render('authentication/edit');
 });
 
@@ -50,10 +48,14 @@ router.post('/:id/edit', ensureLoggedIn('/login'), (req, res, next) => {
     email: req.body.email,
     password: req.body.password
   };
+  //Me falta sumar cupones
+
+
   console.log(req.body);
   User.findByIdAndUpdate(req.params.id, updates, (err, user) => {
     if (err)       { return res.render('edit/:id', { user, errors: user.errors }); }
     if (!user) { return next(new Error("404")); }
+
     return res.redirect('/');
   });
 });
