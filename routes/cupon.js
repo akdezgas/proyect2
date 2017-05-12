@@ -21,13 +21,22 @@ router.post('/:id/add',  (req, res, next) => {
 
     let remainderCuponsUser = currentQuantity - requestedQuantity;
     let remainderCuponsItem = currentItemQuantity - requestedQuantity;
-    console.log(remainderCuponsItem);
+    console.log(remainderCuponsUser);
     if((remainderCuponsUser > 0) && (remainderCuponsItem > 0) ){
       req.user.cupons = remainderCuponsUser;
       item.backerCount = remainderCuponsItem;
+      console.log(remainderCuponsItem);
       req.user.save((err,user) => {
-        item.save((err,item) =>{
-          res.redirect('/items/'+item._id);
+        var cupon = new Cupon({
+            bidder: req.user._id,
+            product: item._id,
+            quantity: requestedQuantity
+        })
+        cupon.save((err,cupon) =>{
+          item.save((err,item) =>{
+            res.redirect('/items/'+item._id);
+
+          })
         })
         console.log("User remaind cupons: " + remainderCuponsUser);
       });
@@ -36,46 +45,20 @@ router.post('/:id/add',  (req, res, next) => {
       res.render('cupons/add', { item,errors: err });
     }
   });
+
 });
-
 router.get('/:id/winner', (req, res, next) => {
-  Cupon.find({product: req.params.id}, (err, item) => {
-    let whoWinner = math.Random();
-    let x = Math.floor((Math.random() * 10) + 1);
-
-
-    //res.render('cupons/winner', { item })
-    //REalizar peticion y buscar todos los cupones que tienen esa id
-
+  Cupon.find({product: req.params.id})
+  .populate('bidder').then( (cupons) => {
+    console.log(cupons);
+    if (cupons.length <0 ){
+      console.log("Theres is no winner yet");
+    }
+    let x = Math.floor((Math.random() * cupons.length));
+    console.log(x);
+    const winner = cupons[x];
+    res.render('cupons/winner', { winner })
   });
-
-
 });
 
 module.exports = router;
-
-/*
-
-router.get('/buy', (req, res, next) => {
-
-      res.render('cupons/buy', { item })
-
-  });
-///items/buy
-router.post('/buy',  (req, res, next) => {
-    return User.findById(req.params.id, (err, item) => {
-      let requestedQuantity = parseInt(req.body.quantity);
-      let currentUserQuantity= user.cupons;
-
-      let remainderCuponsUser = currentUserQuantity + requestedQuantity;
-
-        user.cupons = remainderCuponsUser;
-
-        user.save((err,user) => {
-            res.redirect('/');
-        });
-
-    });
-  });
-
-*/

@@ -2,7 +2,7 @@
 
 <div class="fondo">
   <div class="container-fluid">
-
+    <div class="pres"><h2>Bienvenidos a BidPay,<br> la web de compra venta mas grande de España.</h2></div>
     <% if (user) { %>
     <div class="home-heading-wrapper">
       You have <%= user.cupons %> cupons
@@ -16,9 +16,9 @@
     <div class="item-row">
       <div class="photo2"><a href="/"> <img src="/imagenes/maza2.png"></a></><br></>
       <div class="photo"><img src="imagenes/subasta.jpg"></div>
-      <h5 ><b>En Puja&Gana puedes añadir cualquier producto que desees
-        para subastar y a la vez comprar cualquier producto de nuestra Web.</b></h5><br><br>
-        <h5 class="text-center">Algunos de los productos que han subido nuestros usuarios.</h5><br><br>
+      <h5 ><b>En BidPay$ puedes añadir cualquier producto que desees
+        para subastar y a la vez comprar cualquier producto de nuestra Web.</b></h5><br>
+        <h5 class="text-center">Algunos de los productos que han subido nuestros usuarios.</h5><br>
 
 
 
@@ -39,23 +39,3 @@
   </div>
 </div>
 </div>
-  <!--
-   <% if (user) { %>
-        <% items.forEach((item) => { %>
-          <div class="col-sm-3 home-item-box">
-            <img src="<%= item.imgUrl %>">
-            <div class="item-info-wrapper">
-              <a class="title" href="/items/<%= item._id %>">
-                <strong><%= item.title %></strong>
-              </a><br>
-              by <span class="light-text"><%= item._creator.username %></span><br>
-              <span class="light-text description"><%= item.description %></span>
-            </div>
-          </div>
-          <%  }) %>
-
-    <% } else { %>
-        <li><a href="/edit">Profile</a></li>
-        <li> <a href="/logout"> Log Out </a> </li>
-    <% } %>
--->

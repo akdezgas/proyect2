@@ -17,7 +17,7 @@
     <div class="col-sm-8">
       <img class="item-image" src="<%= item.image %>">
     </div>
-    <div class="col-sm-4 item-info">
+    <div id="infoo"class="col-sm-4 item-info">
       By: <strong><%= item._creator.username %></strong>
       <div class="item-progress">
         <progress value="<%= item.totalPledged %>" max="<%= item.goal %>"></progress>
@@ -40,6 +40,7 @@
       <a style="color:black;" href="/items/<%= item._id%>/add">Añadir Cupon</a>
       <a style="color:black;" href="/items/<%= item._id%>/edit">Editar Item </a>
       <p id="demo"></p> <!--Este es el clock de cuenta atras -->
+
     </div>
 
 
@@ -62,12 +63,12 @@ var x = setInterval(function() {
     var now = new Date().getTime();
 
     var distance = countDownDate - now;
-    if (distance === 0) {
-        var btn = document.createElement("a");
-        var t = document.createTextNode("See who is the winner");
-        btn.href = "/items/<%= item._id%>/winner";
-        btn.appendChild(t);
-        document.getElementById("info").appendChild(btn);
+    if (distance < 0) {
+      var btn = document.createElement("a");
+      var t = document.createTextNode("See who is the winner");
+      btn.href = "/items/<%= item._id%>/winner";
+      btn.appendChild(t);
+      document.getElementById("infoo").appendChild(btn);
     }
 
     // Time calculations for days, hours, minutes and seconds

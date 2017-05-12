@@ -311,7 +311,7 @@ form:after {
 .fondo{
 	width: 60%;
 	margin: auto;
-	background-color: white;
+	background-color: GAINSBORO;
 	opacity: 0.9;
 	min-height: 600px;
 }
@@ -325,10 +325,14 @@ body{
 
  margin-top: 100px;
  background-image: url(../imagenes/venta1.jpg);
- background-repeat: no-repeat;
+ background-repeat: repeat-ys;
  background-size: 1735px 940px;
 
 }
+.pres{
+	text-align: center;
+}
+
 
 nav{
  /*background-color: black;*/
@@ -426,7 +430,7 @@ h4{
 }
 
 a{
-  color: white;
+  color: red;
 	text-decoration: underline;
 }
 
@@ -437,9 +441,11 @@ a{
 
 }
 #item-INF{
-	background-color: grey;
+	background-color:SILVER;
 	border: 3px solid black;
-	border-radius: 5px;
+	border-radius: 8px;
+
+
 }
 #imagen{
 
@@ -456,7 +462,7 @@ a{
 	}
 }
 
-@media (max-width: 550px) {
+@media (max-width: 670px) {
   .logo-spotify{
     height: 64px;
     margin-top: 6%;
@@ -467,6 +473,16 @@ a{
 
   }
 }
+
+@media (max-width: 430px) {
+
+  .logo-spotify img {
+    height: 0%;
+    margin-left: 10%;
+
+  }
+}
+
 @media (max-width: 680px) {
   .col-sm-3 home-item-box {
     margin-left: 500px;
@@ -506,4 +522,25 @@ a{
 p {
   text-align: center;
   font-size: 40px;
+}
+
+@media (max-width: 430px) {
+
+	#item-INF{
+		background-color:SILVER;
+		border: 3px solid black;
+		border-radius: 8px;
+		margin-left:-50px;
+
+
+	}
+	.logos img{
+
+		padding:1px;
+		border-image-slice: 1px;
+		border-image-outset: 3 1;
+		border-radius: 12%;
+		margin: 17px;
+		height: 30%;
+	}
 }
