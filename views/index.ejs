@@ -2,23 +2,23 @@
 
 <div class="fondo">
   <div class="container-fluid">
-    <div class="pres"><h2>Bienvenidos a BidPay,<br> la web de compra venta mas grande de España.</h2></div>
+    <div class="pres"><h2>¡¡Welcome to BidPay!!<br></h2></div>
     <% if (user) { %>
     <div class="home-heading-wrapper">
-      You have <%= user.cupons %> cupons
-      <p>Let's see some options</p>
-      <a class="btn btn-default" href="/items/new">Upload a new item</a>
+
+      <p>You can <a class="btn btn-default" href="/items/new">Upload a new item</a> or you can bid up for a item in the list below</p>
 
     </div>
     <% } %>
 
 
     <div class="item-row">
-      <div class="photo2"><a href="/"> <img src="/imagenes/maza2.png"></a></><br></>
+    </br>
       <div class="photo"><img src="imagenes/subasta.jpg"></div>
-      <h5 ><b>En BidPay$ puedes añadir cualquier producto que desees
-        para subastar y a la vez comprar cualquier producto de nuestra Web.</b></h5><br>
-        <h5 class="text-center">Algunos de los productos que han subido nuestros usuarios.</h5><br>
+    </br>
+      <h5 ><b>In BidPay$ you can upload whatever you have
+        to bid it or you can buy from others.</b></h5><br>
+        <h5 class="text-center">Here is some of the items uploaded in our page :</h5><br>
 
 
 

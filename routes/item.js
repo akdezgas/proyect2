@@ -61,13 +61,17 @@ router.get('/:id/edit', [ensureLoggedIn('/login'), authorizeItem], (req, res, ne
   });
 });
 
-router.put('/:id', [ensureLoggedIn('/login'),upload.single('photo'), authorizeItem], (req, res, next) => {
+router.post('/:id', [ensureLoggedIn('/login'),upload.single('photo'), authorizeItem], (req, res, next) => {
   const updates = {
     title: req.body.title,
     description: req.body.description,
-    category: req.body.category,
-    deadline: req.body.deadline
+
+    goal: req.body.goal,
+    deadline: req.body.deadline,
+
+
   };
+  console.log(updates);
   Item.findByIdAndUpdate(req.params.id, updates, (err, item) => {
     if (err)       { return res.render('items/edit', { item, errors: item.errors }); }
     if (!item) { return next(new Error("404")); }

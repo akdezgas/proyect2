@@ -22,7 +22,7 @@
                       <li> <a  href="/signup"> Sign Up </a> </li>
                       <li> <a href="/login"> Log In </a> </li>
                   <% } else { %>
-                      <span style="color:red; font-size:20px; margin-right:50px"> Welcome <%= user.username %> !! </span>
+                      <span style="color:red; font-size:12px; margin-right:50px"> Welcome <%= user.username %> !! You have <%= user.cupons %> </span>
                       <!-- <img src="<%= user.imgUrl %>"/> -->
                       <li><a href="/<%= user._id %>/edit">Profile</a></li>
                       <li> <a href="/logout"> Log Out </a> </li>

@@ -8,7 +8,7 @@
       <strong></strong>
     </div>
     <div class="col-sm-10">
-      <h1><%= item.title %></h1>
+      <h1 style="text-decoration:underline"><%= item.title %></h1>
       <h2 class="item-category"><%= item.category %></h2>
       <p class="item-description"><%= item.description %></p>
     </div>
@@ -23,13 +23,14 @@
         <progress value="<%= item.totalPledged %>" max="<%= item.goal %>"></progress>
       </div>
       <div class="item-pledged">
-        <span class="item-total">$<%= item.totalPledged %></span><br>
+      <!--  <span class="item-total">$<%= item.totalPledged %></span><br> -->
         <span class="light-text">
-          pledged of
-          $<%= item.goal %></span> goal
+          Total of cupons:
+          <%= item.goal %></span>
         </span>
       </div>
       <div class="item-backers">
+        Left of cupons to sell:
         <strong class="large-strong"><%= item.backerCount %></strong><br>
         <span class="light-text">backers</span>
       </div>
@@ -39,7 +40,8 @@
       </div>
       <a style="color:black;" href="/items/<%= item._id%>/add">Añadir Cupon</a>
       <a style="color:black;" href="/items/<%= item._id%>/edit">Editar Item </a>
-      <p id="demo"></p> <!--Este es el clock de cuenta atras -->
+    </br> </br>
+      <span> Time left to decide a winner: <p style="color:red; text-decoration:underline; font-size:20px" id="demo"></p></span> <!--Este es el clock de cuenta atras -->
 
     </div>
 
@@ -84,7 +86,7 @@ var x = setInterval(function() {
     // If the count down is over, write some text
     if (distance < 0) {
         clearInterval(x);
-        document.getElementById("demo").innerHTML = "EXPIRED";
+        document.getElementById("demo").innerHTML = "ENDED";
     }
 }, 1000);
 

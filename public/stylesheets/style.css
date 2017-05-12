@@ -132,7 +132,7 @@ form:after {
 	-ms-transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
 	transition: all 0.5s ease;
-	background: #eae7e7 url(http://cssdeck.com/uploads/media/items/8/8bcLQqF.png) no-repeat;
+	background: #eae7e7 url() no-repeat;
 	border: 1px solid #c8c8c8;
 	color: #777;
 	font: 13px Helvetica, Arial, sans-serif;
@@ -220,7 +220,7 @@ form:after {
 	padding: 15px 0;
 }
 .button a {
-	background: url(http://cssdeck.com/uploads/media/items/8/8bcLQqF.png) 0 -112px no-repeat;
+	background: url() 0 -112px no-repeat;
 	color: #7E7E7E;
 	font-size: 17px;
 	padding: 2px 0 2px 40px;
@@ -296,9 +296,9 @@ form:after {
 		margin-top: 30px;
 	}
   .item-row{
-    margin-top: 50px;
+
     margin-left: 80px;
-    padding-top: 30px;
+    padding-top: 0p, autox;
     padding-bottom: 30px;
   }
 }
@@ -380,14 +380,16 @@ nav{
 
 .lista{
  float: right;
- padding: 20px 30px;
+ padding-top: 20px;
  margin: 0 auto;
 }
 
 .lista > li{
  display:inline-block;
  padding:10px;
- color: white;
+ font-size: 16px;
+
+
 
 }
 
@@ -430,7 +432,7 @@ h4{
 }
 
 a{
-  color: red;
+  color: lightred;
 	text-decoration: underline;
 }
 
@@ -496,18 +498,15 @@ a{
 @media (max-width: 900px) {
 	.photo img{
 		width:90%;
-		margin-left:-70px;
+		margin-left:-50px;
 
 	}
-	.photo2 img{
-		width:90%;
-		margin-left:-70px;
-	}
+
 	.fondo{
 		width: 95%;
 	}
 	h5{
-		margin-left:-70px;
+		margin-left:-50px;
 	}
 	.logos img{
 
@@ -521,7 +520,7 @@ a{
 }
 p {
   text-align: center;
-  font-size: 40px;
+  font-size: 18px;
 }
 
 @media (max-width: 430px) {
@@ -542,5 +541,12 @@ p {
 		border-radius: 12%;
 		margin: 17px;
 		height: 30%;
+		width: 60%;
+	}
+	.lista > li{
+	 display:inline-block;
+	 padding:10px;
+	 font-size: 14px;
+	 margin-right: 100px;
 	}
 }

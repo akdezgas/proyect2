@@ -35,8 +35,7 @@
           <input type="date" name="deadline" class="form-control" placeholder="Deadline" value="<%= item.inputFormattedDate %>">
 
 
-            <h3>Upload your photo</h3>
-              <input type="file" name="photo">
+            
 
 
               <input type="submit" value="Sign Up" />
@@ -48,27 +47,3 @@
 
     </div>
   </div>
-
-
-
-<!--
-<div class="form-group">
-  <label for="category">Category</label><br>
-  <select name="category" id="category">
-    <% types.forEach((category) => { %>
-
-      <% if (category === item.category) { %>
-        <option
-          selected
-          type="text"
-          value="<%= category %>"
-          class="form-control">
-        <%= category %>
-        </option>
-      <% } else { %>
-        <option type="text" value="<%= category %>" class="form-control"><%= category %></option>
-      <% } %>
-    <%  }) %>
-  </select>
-</div>
--->

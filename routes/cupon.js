@@ -48,16 +48,18 @@ router.post('/:id/add',  (req, res, next) => {
 
 });
 router.get('/:id/winner', (req, res, next) => {
+
   Cupon.find({product: req.params.id})
   .populate('bidder').then( (cupons) => {
-    console.log(cupons);
     if (cupons.length <0 ){
       console.log("Theres is no winner yet");
     }
     let x = Math.floor((Math.random() * cupons.length));
     console.log(x);
-    const winner = cupons[x];
-    res.render('cupons/winner', { winner })
+    const winner_id = cupons[x].bidder._id;
+    User.findById(winner_id, (user) => {
+      res.render('cupons/winner', { user })
+    })
   });
 });
 
